@@ -1,3 +1,21 @@
-<header>
-    Page header
+<header class="navbar bg-primary d-flex">
+    <h1>Codeial</h1>
+
+    <ul>
+        <% if(locals.user){ %>
+            <li>
+                <a href="/users/profile">
+                    <%= user.name %>
+                </a>
+            </li>
+            <li> <a href="/users/sign-out" >sign-out</a> </li>
+        <% }else{ %>
+            <li>
+                <a href="/users/signin" class="d-flex ">sign-in</a>
+            </li>
+            <li>
+                <a href="/users/signup" class="d-flex ">sign-up</a>
+            </li>
+        <% } %>    
+    </ul>
 </header>

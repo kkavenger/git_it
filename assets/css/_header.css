@@ -1,0 +1,22 @@
+.navbar {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 1rem; }
+
+.bg-primary {
+  background-color: #007bff !important; }
+
+.d-flex {
+  display: -ms-flexbox !important;
+  display: flex !important; }
+
+.flex-row-reverse {
+  -ms-flex-direction: row-reverse !important;
+  flex-direction: row-reverse !important; }

@@ -8,13 +8,17 @@
         <%= title %>
     </title>
     <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/_footer.css">
+    <link rel="stylesheet" href="/css/_header.css">
     <%- style %>
 </head>
 <body>
 
     <%- include('_header'); -%>
     
-    <%- body %>
+    <main id="main-id">
+        <%- body %>
+    </main>
 
     <%- include('_footer'); -%>
     
