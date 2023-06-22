@@ -2,10 +2,30 @@
 
 <section id="feed-posts">
     <h4>Posts</h4>
-    <form action="/posts/create" method="post" id="new-post-form">
 
-        <textarea name="Content" cols="30" rows="3" placeholder="Type Here..."></textarea>
-        <input type="submit" value="Post">
+    <% if(locals.user){ %>
+       <form action="/posts/create" method="post" id="new-post-form">
 
-    </form>
+          <textarea name="Content" cols="30" rows="3" placeholder="Type Here..."></textarea>
+          <input type="submit" value="Post">
+
+       </form>
+    <% } %>
+    <div id="post-list">
+        <ul>
+            <% for(post of posts) {%>
+                
+                <li>
+                    <p>
+                        <%= post.Content %>
+                        <br>
+                        <small>
+                            <%= post.user.name %>
+                        </small>
+                    </p>
+                </li>
+
+            <% } %>   
+        </ul>
+    </div>
 </section>
