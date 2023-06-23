@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+//const postController = require("../controllers/post_controller"); // Use "postController" instead of "post_controller
 
 const postSchema = new mongoose.Schema({
 
@@ -9,7 +10,13 @@ const postSchema = new mongoose.Schema({
     user : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User',
-    }
+    },
+    comment : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Comment',
+        }
+    ]
 },{
     timestamps : true
 });
