@@ -1,24 +1,45 @@
+header {
+  background-color: rgb(222, 23, 23);
+  color: #fff;
+  padding: 10px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .navbar {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-  }
-  .bg-primary {
-    background-color: #007bff !important; 
-  }
-  .d-flex {
-    display: -ms-flexbox !important;
-    display: flex !important;
-  }
-  .flex-row-reverse {
-    -ms-flex-direction: row-reverse !important;
-    flex-direction: row-reverse !important;
-  }
+  margin-top: 10px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+// .navbar {
+//     position: relative;
+//     display: -ms-flexbox;
+//     display: flex;
+//     -ms-flex-wrap: wrap;
+//     flex-wrap: wrap;
+//     -ms-flex-align: center;
+//     align-items: center;
+//     -ms-flex-pack: justify;
+//     justify-content: space-between;
+//     padding: 0.5rem 1rem;
+//   }
+//   .bg-primary {
+//     background-color: #007bff !important; 
+//   }
+//   .d-flex {
+//     display: -ms-flexbox !important;
+//     display: flex !important;
+//   }
+  // .flex-row-reverse {
+  //   -ms-flex-direction: row-reverse !important;
+  //   flex-direction: row-reverse !important;
+  // }
   

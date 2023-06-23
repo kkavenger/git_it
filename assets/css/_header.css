@@ -1,22 +1,16 @@
+header {
+  background-color: #de1717;
+  color: #fff;
+  padding: 10px; }
+
+.logo {
+  font-size: 24px;
+  font-weight: bold; }
+
 .navbar {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 0.5rem 1rem; }
+  margin-top: 10px; }
 
-.bg-primary {
-  background-color: #007bff !important; }
-
-.d-flex {
-  display: -ms-flexbox !important;
-  display: flex !important; }
-
-.flex-row-reverse {
-  -ms-flex-direction: row-reverse !important;
-  flex-direction: row-reverse !important; }
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px; }

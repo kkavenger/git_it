@@ -19,3 +19,19 @@ module.exports.create = function(req,res){
         }
     });
 }
+module.exports.destroycomment = function (req, res) {
+
+    Comment.findById(req.params.id).then((comment,err) => {
+
+        if(comment.user == req.user.id){
+
+            let postid = comment.post;
+            comment.deleteOne();
+            Post.findByIdAndUpdate(postid, {$pull : {comment : req.params.id} }).then((result,err) => {
+                return res.redirect('back'); 
+            });
+        }else{
+            return res.redirect('back');
+        }
+    });
+}
