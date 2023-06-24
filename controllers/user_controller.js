@@ -1,8 +1,23 @@
 const User = require('../models/user');
 
 module.exports.profile = function(req,res){
-    return res.render('user', {title : "Good"});
+    User.findById(req.params.id).then((users,err) => {
+        return res.render('user', {
+            title : "Good",
+            profile_users : users
+        });
+    });
 }
+module.exports.update = function (req, res) {
+
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id,req.body).then((user,err) => {
+            return res.redirect('back');
+        });
+    }else {
+        return res.status(401).send('Unauthenticated');
+    }
+};
 module.exports.signin = function(req,res){
     // console.log(req.cookies);
     if(req.isAuthenticated()){

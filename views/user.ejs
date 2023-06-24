@@ -2,7 +2,22 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 <h1>The user interface is as follow <%= title %></h1>
 
-<h1>
-    <p> <%= user.name %> </p>
-    <p> <%= user.email %> </p>
-</h1>
+<!-- <h1>
+    <p> <%= profile_users.name %> </p>
+    <p> <%= profile_users.email %> </p>
+</h1> -->
+
+<% if(user.id == profile_users.id){ %>
+    <form action="/users/update/<%= profile_users.id %>" method="post">
+        <input type="text" name = "name" placeholder="Your name" value="<%= profile_users.name %>" required>
+        <input type="email" name = "email" placeholder="Your email" value="<%= profile_users.email %>" required>
+        <input type="submit" value="Update Profile">
+    </form>
+<% }else{ %>  
+
+    <h1>
+        <p> <%= profile_users.name %> </p>
+        <p> <%= profile_users.email %> </p>
+    </h1>
+
+<% } %>   
