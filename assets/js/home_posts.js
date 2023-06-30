@@ -39,7 +39,7 @@
         return $(`<li id="post-${post._id}">
             <p>
                 
-                    <a class = "delete-post-button" href="/posts/destroy/${post._id}">X</a>
+                <a class = "delete-post-button" href="/posts/destroy/${post._id}">X</a>
                  
                 ${post.Content}
                 <br>
@@ -51,7 +51,7 @@
         
                 
         
-                    <form action="/comments/create" method="post">
+                    <form action="/comments/create" method="post" id="new-comment-creation">
                         <input type="text" name="content" placeholder="Type your comments here ... " >
                         <input type="hidden" name="post" value=${post._id} >
                         <input type="submit" value="Add Comment">
@@ -60,7 +60,9 @@
                   
                 <div class="post-comment-list">
                     <ul id="post-comment-${post._id} %>">   
-        
+
+
+
                     </ul>
                 </div>
         
@@ -88,6 +90,49 @@
                 }
             })
         })
+    } 
+    
+    let createcomment = function(){
+
+            let newCommentform = $('#new-comment-creation');
+    
+            newCommentform.submit(function(e){
+                e.preventDefault();
+                console.log('hello');
+                $.ajax({
+                    type: 'POST',
+                    url: '/comments/create',
+                    data: newCommentform.serialize(),
+                    success: function(data){
+                        //console.log(data);
+                        console.log(data.data.fetch);
+                        let newComment = newcommentDom(data.data.fetch);
+                        $(`#post-comment-${data.data.fetch.post}`).prepend(newComment);
+                    },
+                    error: function(error){
+                        console.log(error.responseText);
+                    }
+                })
+            })
     }
+
+    let newcommentDom = function(com){
+        return $(`<li id="comment-${com._id}">
+
+        <p>
+           
+            <a class = "delete-comment-button" href="/comments/destroycomment/${com._id}">X</a>
+
+            ${com.content}
+            <br>
+            <small>
+                ${com.user.name} 
+            </small>
+        </p>
+    
+       </li>`)
+    };
+    
     createPost();
+    createcomment();
 }

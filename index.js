@@ -8,6 +8,7 @@ const db = require('./config/mongoose');
 //authentication library
 const session = require('express-session');
 const passport = require('passport');
+const passportJWT = require('./config/passport-jwt-strategy');
 const passportlocal = require('./config/passport-local');
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
@@ -27,6 +28,7 @@ app.use(sassMiddleware({
     prefix : '/css'
 }));
 app.use(express.static("./assets"));
+app.use('/upload', express.static(__dirname + '/upload'));
 app.use(expresslayouts);
 // app.use('/', require('./routes/index2'));
 

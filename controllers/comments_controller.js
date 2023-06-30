@@ -6,15 +6,26 @@ module.exports.create = async function(req,res){
     // console.log(req.body);
     try{
         let results = await Post.findById(req.body.post);
+        //console.log(results);
 
         if(results){
-            let fetch = await Comment.create({
+            let f = await Comment.create({
                 content : req.body.content,
                 post : req.body.post,
                 user : req.user._id,
             });
-            results.comment.push(fetch);
-            results.save();
+            //console.log(f);
+            results.comment.push(f);
+            await results.save();
+            const comment = await Comment.findById(f.id).populate('user').exec();
+            if(req.xhr){
+                return res.status(200).json({
+                    data : {
+                        fetch : comment,
+                    },
+                    Message : "comment created successfully!"
+                });
+            }
             return res.redirect('/');
         }
     }catch(err){
