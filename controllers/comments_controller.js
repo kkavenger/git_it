@@ -1,9 +1,10 @@
 const Comment = require('../models/comments');
 const Post = require('../models/post');
+const commentsMailer = require('../mailers/comments_mailer');
 
 module.exports.create = async function(req,res){
 
-    // console.log(req.body);
+     //console.log(req.body);
     try{
         let results = await Post.findById(req.body.post);
         //console.log(results);
@@ -17,11 +18,13 @@ module.exports.create = async function(req,res){
             //console.log(f);
             results.comment.push(f);
             await results.save();
-            const comment = await Comment.findById(f.id).populate('user').exec();
+            //const comment = await Comment.findById(f.id).populate('user').exec();
+            f = await f.populate(['user']);
+            commentsMailer.newComment(f);
             if(req.xhr){
                 return res.status(200).json({
                     data : {
-                        fetch : comment,
+                        fetch : f,
                     },
                     Message : "comment created successfully!"
                 });

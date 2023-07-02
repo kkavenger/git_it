@@ -7,3 +7,89 @@
     width: 30%;
     padding: 10px;
     border-left: 1px solid lightgray; }
+
+/* Overall Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333; }
+
+/* Header Styles */
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333; }
+
+/* Feed Posts Section Styles */
+#feed-posts {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px; }
+
+#new-post-form {
+  margin-bottom: 10px; }
+
+textarea {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical; }
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer; }
+
+input[type="submit"]:hover {
+  background-color: #45a049; }
+
+ul {
+  list-style-type: none;
+  padding: 0; }
+
+/* Post Styles */
+.post {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee; }
+
+.post-content {
+  margin-bottom: 10px; }
+
+.post-info {
+  color: #888;
+  font-size: 12px; }
+
+/* User Friends Section Styles */
+#user-friends {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px; }
+
+a {
+  color: #007bff;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  #home-container {
+    flex-direction: column; }
+  #home-container #feed-posts {
+    width: 100%;
+    margin-bottom: 20px; }
+  #home-container #user-friends {
+    width: 100%;
+    border-left: none; } }
