@@ -3,6 +3,7 @@ const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
 const queue = require('../config/kue');
 const commentemailworker = require('../worker/comment_email_worker');
+const Like = require('../models/likes');
 
 module.exports.create = async function(req,res){
 
@@ -17,10 +18,11 @@ module.exports.create = async function(req,res){
                 post : req.body.post,
                 user : req.user._id,
             });
-            //console.log(f);
+            console.log(f);
             results.comment.push(f);
             await results.save();
-            //const comment = await Comment.findById(f.id).populate('user').exec();
+            const comment = await Comment.findById(f.id).populate('user').exec();
+            console.log(comment);
             f = await f.populate(['user']);
             
             let job = queue.create('email', f).save(function(err){
@@ -33,7 +35,7 @@ module.exports.create = async function(req,res){
             if(req.xhr){
                 return res.status(200).json({
                     data : {
-                        fetch : f,
+                        fetch : comment,
                     },
                     Message : "comment created successfully!"
                 });
@@ -55,7 +57,10 @@ module.exports.destroycomment = async function (req, res) {
             let postid = comment.post;
             comment.deleteOne();
             let result = await Post.findByIdAndUpdate(postid, {$pull : {comment : req.params.id} });
-            return res.redirect('back'); 
+
+            await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
+
+            return res.redirect('back');
         }else{
             return res.redirect('back');
         }

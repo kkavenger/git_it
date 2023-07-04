@@ -1,138 +1,290 @@
-{
-    let createPost = function(){
+// {
+//     let createPost = function(){
 
-        let newPostform = $('#new-post-form');
+//         let newPostform = $('#new-post-form');
 
-        newPostform.submit(function(e){
-            e.preventDefault();
+//         newPostform.submit(function(e){
+//             e.preventDefault();
             
+//             $.ajax({
+//                 type : 'post',
+//                 url : '/posts/create',
+//                 data : newPostform.serialize(),
+//                 success : function(data){
+//                     new Noty({
+//                         theme: 'sunset',
+//                         text: 'Post created successfully!',
+//                         type : 'success',
+//                         layout: 'topRight',
+//                         timeout : 1500
+//                     }).show();
+//                     let newPost = newPostDom(data.data.post);
+//                     $('#post-list>ul').prepend(newPost);
+//                     deletepost($(' .delete-post-button'),newPost);
+//                     new PostComments(data.data.post._id);
+//                     new ToggleLike($(' .toggle-like-button', newPost)); 
+//                 },
+//                 error : function(error){
+//                     console.log(error.responseText);
+//                     new Noty({
+//                         theme: 'sunset',
+//                         text: error.responseText,
+//                         type : 'error',
+//                         layout: 'topRight',
+//                         timeout : 1500
+//                     }).show();
+//                 }
+//             });
+//         });
+//     }
+//     let newPostDom = function(post){
+//         return $(`<li id="post-${post._id}">
+//             <p>
+                
+//                 <a class = "delete-post-button" href="/posts/destroy/${post._id}">X</a>
+                 
+//                 ${post.Content}
+//                 <br>
+//                 <small>
+//                     ${post.user.name}
+//                 </small>
+//                 <br>
+//                 <small>
+//                     <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+//                         0 likes
+//                     </a>
+//                 </small>
+//             </p>
+//             <div class="post-comments">
+        
+                
+        
+//                     <form action="/comments/create" method="post" id="new-comment-creation">
+//                         <input type="text" name="content" placeholder="Type your comments here ... " >
+//                         <input type="hidden" name="post" value=${post._id} >
+//                         <input type="submit" value="Add Comment">
+//                     </form>
+        
+                  
+//                 <div class="post-comment-list">
+//                     <ul id="post-comment-${post._id} %>">   
+
+
+
+//                     </ul>
+//                 </div>
+        
+//             </div>
+//         </li>`)
+//     }
+//     let deletepost = function(deleteLink){
+//         $(deleteLink).click(function(e){
+//             e.preventDefault();
+
+//             $.ajax({
+//                 type: "GET",
+//                 url: $(deleteLink).prop('href'),
+//                 success: function(data){
+//                     new Noty({
+//                         theme: 'sunset',
+//                         text: 'Post Deleted successfully!',
+//                         type : 'success',
+//                         layout: 'topRight',
+//                         timeout : 1500
+//                     }).show();
+//                     $(`#post-${data.data.post_id}`).remove();
+//                 },error : function(error){
+//                     console.log(error.responseText);
+//                 }
+//             })
+//         })
+//     } 
+    
+//     let createcomment = function(){
+
+//             let newCommentform = $('#new-comment-creation');
+    
+//             newCommentform.submit(function(e){
+//                 e.preventDefault();
+//                 console.log('hello');
+//                 $.ajax({
+//                     type: 'POST',
+//                     url: '/comments/create',
+//                     data: newCommentform.serialize(),
+//                     success: function(data){
+//                         console.log(data);
+//                         //console.log(data.data.fetch);
+//                         let newComment = newcommentDom(data.data.fetch);
+//                         $(`#post-comment-${data.data.fetch.post}`).prepend(newComment);
+//                         new ToggleLike($(' .toggle-like-button', newComment));
+//                     },
+//                     error: function(error){
+//                         console.log(error.responseText);
+//                     }
+//                 })
+//             })
+//     }
+
+//     let newcommentDom = function(com){
+//         return $(`<li id="comment-${com._id}">
+
+//         <p>
+           
+//             <a class = "delete-comment-button" href="/comments/destroycomment/${com._id}">X</a>
+
+//             ${com.content}
+//             <br>
+//             <small>
+//                 ${com.user.name}
+//             </small>
+//             <br>
+//             <small>
+//                     <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${com._id}&type=Comment">
+//                         0 likes
+//                     </a>
+//             </small>
+//         </p>
+    
+//        </li>`)
+//     };
+    
+//     createPost();
+//     createcomment();
+// }
+
+{   
+    // method to submit the form data for new post using AJAX
+    let createPost = function(){
+        let newPostForm = $('#new-post-form');
+
+        newPostForm.submit(function(e){
+            e.preventDefault();
+
             $.ajax({
-                type : 'post',
-                url : '/posts/create',
-                data : newPostform.serialize(),
-                success : function(data){
-                    new Noty({
-                        theme: 'sunset',
-                        text: 'Post created successfully!',
-                        type : 'success',
-                        layout: 'topRight',
-                        timeout : 1500
-                    }).show();
+                type: 'post',
+                url: '/posts/create',
+                data: newPostForm.serialize(),
+                success: function(data){
+                    // console.log(data.data.post);
                     let newPost = newPostDom(data.data.post);
-                    $('#post-list>ul').prepend(newPost);
-                    deletepost($(' .delete-post-button'),newPost);
-                },
-                error : function(error){
-                    console.log(error.responseText);
+                    // console.log(newPost);
+                    $('#post-list-container>ul').prepend(newPost);
+                    deletePost($(' .delete-post-button', newPost));
+
+                    // call the create comment class
+
+                     new PostComments(data.data.post._id);
+
+
+                     //toggle like for post
+                    new ToggleLike($(' .toggle-like-button', newPost));
+
                     new Noty({
-                        theme: 'sunset',
-                        text: error.responseText,
-                        type : 'error',
+                        theme: 'relax',
+                        text: "Post published!",
+                        type: 'success',
                         layout: 'topRight',
-                        timeout : 1500
+                        timeout: 1500
+                        
                     }).show();
+
+                }, error: function(error){
+                    console.log(error.responseText);
                 }
             });
         });
     }
+
+
+    // method to create a post in DOM
     let newPostDom = function(post){
         return $(`<li id="post-${post._id}">
-            <p>
+                    <p>
+                        
+                        <small>
+                            <a class="delete-post-button"  href="/posts/destroy/${ post._id }">X</a>
+                        </small>
+                       
+                        ${ post.content }
+                        <br>
+                        <small>
+                        ${ post.user.name }
+                        </small>
+
+                        <br>
+                        <small>
+                          <a href="/likes/toggle/?id=${post._id}&type=Post" class="toggle-like-button" data-likes="0">
+                          
+                          0 Likes
+                          </a>
+                                        
+                        </small>
+                    </p>
+                    <div class="post-comments">
+                        
+                            <form id="post-${ post._id }-comments-form" action="/comments/create" method="POST">
+                                <input type="text" name="content" placeholder="Type Here to add comment..." required>
+                                <input type="hidden" name="post" value="${ post._id }" >
+                                <input type="submit" value="Add Comment">
+                            </form>
+               
                 
-                <a class = "delete-post-button" href="/posts/destroy/${post._id}">X</a>
-                 
-                ${post.Content}
-                <br>
-                <small>
-                    ${post.user.name}
-                </small>
-            </p>
-            <div class="post-comments">
-        
-                
-        
-                    <form action="/comments/create" method="post" id="new-comment-creation">
-                        <input type="text" name="content" placeholder="Type your comments here ... " >
-                        <input type="hidden" name="post" value=${post._id} >
-                        <input type="submit" value="Add Comment">
-                    </form>
-        
-                  
-                <div class="post-comment-list">
-                    <ul id="post-comment-${post._id} %>">   
-
-
-
-                    </ul>
-                </div>
-        
-            </div>
-        </li>`)
+                        <div class="post-comments-list">
+                            <ul id="post-comments-${ post._id }">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </li>`)
     }
-    let deletepost = function(deleteLink){
+
+
+    // method to delete a post from DOM
+    let deletePost = function(deleteLink){
         $(deleteLink).click(function(e){
             e.preventDefault();
 
             $.ajax({
-                type: "GET",
+                type: 'get',
                 url: $(deleteLink).prop('href'),
                 success: function(data){
-                    new Noty({
-                        theme: 'sunset',
-                        text: 'Post Deleted successfully!',
-                        type : 'success',
-                        layout: 'topRight',
-                        timeout : 1500
-                    }).show();
                     $(`#post-${data.data.post_id}`).remove();
-                },error : function(error){
+                    new Noty({
+                        theme: 'relax',
+                        text: "Post Deleted",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500
+                        
+                    }).show();
+                },error: function(error){
                     console.log(error.responseText);
                 }
-            })
-        })
-    } 
-    
-    let createcomment = function(){
+            });
 
-            let newCommentform = $('#new-comment-creation');
-    
-            newCommentform.submit(function(e){
-                e.preventDefault();
-                console.log('hello');
-                $.ajax({
-                    type: 'POST',
-                    url: '/comments/create',
-                    data: newCommentform.serialize(),
-                    success: function(data){
-                        //console.log(data);
-                        console.log(data.data.fetch);
-                        let newComment = newcommentDom(data.data.fetch);
-                        $(`#post-comment-${data.data.fetch.post}`).prepend(newComment);
-                    },
-                    error: function(error){
-                        console.log(error.responseText);
-                    }
-                })
-            })
+        });
     }
 
-    let newcommentDom = function(com){
-        return $(`<li id="comment-${com._id}">
 
-        <p>
-           
-            <a class = "delete-comment-button" href="/comments/destroycomment/${com._id}">X</a>
 
-            ${com.content}
-            <br>
-            <small>
-                ${com.user.name} 
-            </small>
-        </p>
-    
-       </li>`)
-    };
-    
+
+
+    // loop over all the existing posts on the page (when the window loads for the first time) and call the delete post method on delete link of each, also add AJAX (using the class we've created) to the delete button of each
+    let convertPostsToAjax = function(){
+        $('#posts-list-container>ul>li').each(function(){
+            let self = $(this);
+            let deleteButton = $(' .delete-post-button', self);
+            deletePost(deleteButton);
+
+            // get the post's id by splitting the id attribute
+            let postId = self.prop('id').split("-")[1]
+            new PostComments(postId);
+        });
+    }
+
+
+
     createPost();
-    createcomment();
+    convertPostsToAjax();
 }

@@ -105,3 +105,14 @@ module.exports.destroysession = function(req,res){
         return res.redirect('/');
       });
 }
+// module.exports.forgotpassword = async function(req, res){
+
+//     const result = await User.findOne({email : req.body.email});
+
+//     if(result){
+        
+//     }else{
+//         req.flash('error',"Email not found");
+//         return res.redirect('back');
+//     }
+// } 

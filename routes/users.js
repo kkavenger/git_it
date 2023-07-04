@@ -16,6 +16,7 @@ router.post('/createsession',passport.authenticate(
 ),user_controller.createsession);
 
 router.get('/sign-out',user_controller.destroysession);
+//router.get('/forgot-password', user_controller.forgot_password);
 
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile','email']}));
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/users/signin'}), user_controller.createsession);
