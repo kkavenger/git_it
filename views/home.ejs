@@ -13,6 +13,7 @@
           <input type="submit" value="Post">
 
        </form>
+       
     <% } %>
     <div id="post-list">
         <ul>
@@ -33,7 +34,9 @@
         </p>
     <% } %>   
   </section>
+  <%- include('_chat_box') %>
 </div>
+
 <script src="/js/home_posts.js"></script>
 <script src="/js/toggle_likes.js"></script>
 <script>
@@ -42,3 +45,11 @@
         let toggleLike = new ToggleLike(self);
     })
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+<script src="/js/chat_engine.js"></script>
+
+<% if(locals.user){ %>
+<script>
+    new ChatEngine('user-chat-box', '<%= locals.user.email %>');
+</script>
+<% } %>

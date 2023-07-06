@@ -93,3 +93,65 @@ a:hover {
   #home-container #user-friends {
     width: 100%;
     border-left: none; } }
+
+#user-chat-box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 400px;
+  height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden; }
+
+#chat-messages-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 400px;
+  overflow-y: scroll; }
+
+/* Style for each chat message */
+li {
+  padding: 10px; }
+
+/* Style for other messages */
+.other-message {
+  background-color: #f2f2f2; }
+
+/* Style for self messages */
+.self-message {
+  background-color: #e2f7fb;
+  text-align: right; }
+
+/* Style for the message span */
+span {
+  display: inline-block;
+  max-width: 80%;
+  word-wrap: break-word; }
+
+/* Style for the chat message input container */
+#chat-message-input-container {
+  padding: 10px;
+  background-color: #f7f7f7; }
+
+/* Style for the chat message input field */
+#chat-message-input {
+  width: 70%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px; }
+
+/* Style for the send button */
+#send-message {
+  width: 25%;
+  padding: 5px;
+  border: none;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px; }
+
+/* Style for the send button on hover */
+#send-message:hover {
+  background-color: #45a049; }
