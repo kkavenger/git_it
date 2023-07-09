@@ -21,7 +21,7 @@ const chatSocket = require('./config/chat_sockets').chatSocket(chatServer);
 chatServer.listen(5000);
 console.log("Chat server listening on 5000");
 // use express router
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: false}));
 app.use(cookieparser());
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
