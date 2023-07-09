@@ -155,3 +155,51 @@ span {
 /* Style for the send button on hover */
 #send-message:hover {
   background-color: #45a049; }
+
+/* Container for the chat box */
+#user-chat-box {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto; }
+
+/* List of chat messages */
+#chat-messages-list {
+  list-style-type: none;
+  padding: 0; }
+
+/* Styling for other user's messages */
+.other-message {
+  background-color: #c7ecee;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px; }
+
+/* Styling for self messages */
+.self-message {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px; }
+
+/* Styling for chat message input container */
+#chat-message-input-container {
+  margin-top: 20px; }
+
+/* Styling for chat message input field */
+#chat-message-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px; }
+
+/* Styling for send button */
+#send-message {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer; }
